@@ -54,6 +54,8 @@ module Pronto
 
     def ruby_executable?(path)
       return false if File.directory?(path)
+      return false unless File.file?(path)
+      
       line = File.open(path, &:readline)
       line =~ /#!.*ruby/
     rescue ArgumentError, EOFError
